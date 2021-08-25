@@ -4,6 +4,8 @@ fn main() {
     calc();
     boolean();
     char();
+    tuple();
+    array();
 }
 
 fn scalar_int() {
@@ -60,4 +62,25 @@ fn char() {
 
     println!("c = {}\nz = {}", c, z);
     println!("emoji = {}\n", crab_emoji);
+}
+
+fn tuple() {
+    let tup = (500, 6.4, 1);
+
+    // アクセスしたい値の番号を指定して直接アクセス
+    println!("tup = ({}, {}, {})", tup.0, tup.1, tup.2);
+
+    // パターンマッチングを使用して分解
+    let (x, y, z) = tup;
+
+    println!("(x, y, z) = ({}, {}, {})\n", x, y, z);
+}
+
+fn array() {
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+    let second = a[1];
+
+    println!("first = {}\nsecond = {}", first, second);
 }
