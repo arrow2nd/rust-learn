@@ -1,40 +1,6 @@
-// あらゆる要素は標準で非公開（private）
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-    }
-
-    mod serving {
-        fn _serve_order() {}
-        mod test {
-            fn _fix_incorrect_order() {
-                // 相対パスで親モジュールにアクセス
-                super::_serve_order();
-            }
-        }
-    }
-}
-
-mod back_of_house {
-    pub struct Breakfast {
-        pub toast: String,
-        _seasonal_fruit: String,
-    }
-
-    impl Breakfast {
-        pub fn summer(toast: &str) -> Breakfast {
-            Breakfast {
-                toast: String::from(toast),
-                _seasonal_fruit: String::from("apple"),
-            }
-        }
-    }
-
-    pub enum Appetizer {
-        Soup,
-        Salad,
-    }
-}
+//モジュール名と同じ名前のファイルから読み込む
+mod back_of_house;
+mod front_of_house;
 
 //-------------------------------------
 // use でモジュールをスコープに持ち込む
