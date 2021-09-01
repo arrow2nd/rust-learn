@@ -1,4 +1,6 @@
-fn largest<T>(list: &[T]) -> T {
+// 比較演算子を使うためトレイト境界に PartialOrd を指定
+// Copyトレイトを実装する型のみを使って呼び出したいので Copy も追加
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
 
     for &item in list.iter() {
