@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 fn main() {
     // 静的ライフタイム .. プログラム全体の期間生きる
     let _s: &'static str = "hogehoge";
@@ -56,4 +58,18 @@ fn _first_word(s: &str) -> &str {
     }
 
     &s[..]
+}
+
+// まとめ
+fn _longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+where
+    T: Display, // Displayトレイトを実装する全ての型
+{
+    println!("アナウンス！ {}", ann);
+
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
 }
