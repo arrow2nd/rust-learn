@@ -5,7 +5,7 @@ struct Rectangle {
 }
 
 impl Rectangle {
-    fn can_hold(&self, other: &Rectangle) -> bool {
+    fn _can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
 }
@@ -19,7 +19,7 @@ pub fn greeting(name: &str) -> String {
 }
 
 pub struct Guess {
-    value: i32,
+    _value: i32,
 }
 
 impl Guess {
@@ -30,7 +30,7 @@ impl Guess {
             panic!("値は100以下でなければいけませんが、値は {} でした。", value);
         }
 
-        Guess { value }
+        Guess { _value: value }
     }
 }
 
@@ -49,7 +49,7 @@ mod tests {
             height: 1,
         };
 
-        assert!(larger.can_hold(&smaller));
+        assert!(larger._can_hold(&smaller));
     }
 
     #[test]
@@ -63,7 +63,7 @@ mod tests {
             height: 1,
         };
 
-        assert!(!smaller.can_hold(&larger));
+        assert!(!smaller._can_hold(&larger));
     }
 
     #[test]
