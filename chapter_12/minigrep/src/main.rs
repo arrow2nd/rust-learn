@@ -1,33 +1,21 @@
-use std::env;
-use std::fs::File;
-use std::io::prelude::*;
+extern crate minigrep;
+
+use minigrep::Config;
+use std::{env, process};
 
 fn main() {
     // コマンドライン引数をパース
     let args: Vec<String> = env::args().collect();
-    let config = parse_config(&args);
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("引数の解析時に問題が発生しました: {}", err);
+        process::exit(1);
+    });
 
     println!("query = {}", config.query);
     println!("filename = {}", config.filename);
 
-    // ファイルを開く
-    let mut f = File::open(config.filename).expect("ファイルが見つかりません");
-
-    let mut contents = String::new();
-    f.read_to_string(&mut contents)
-        .expect("ファイルの読み込み中に問題がありました");
-
-    println!("text:\n{}", contents);
-}
-
-struct Config {
-    query: String,
-    filename: String,
-}
-
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let filename = args[2].clone();
-
-    Config { query, filename }
+    if let Err(e) = minigrep::run(config) {
+        println!("アプリケーションエラー: {}", e);
+        process::exit(1);
+    }
 }
