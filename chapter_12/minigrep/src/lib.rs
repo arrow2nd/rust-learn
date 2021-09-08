@@ -1,3 +1,7 @@
+//! # my crate
+//!
+//! こう書くとコメントを含む要素にドキュメントを付け加えられます！
+
 use std::env;
 use std::error::Error;
 use std::fs::File;
@@ -56,6 +60,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+///コンテンツ内をクエリ文字列で検索する
+///
+/// # Example
+///
+/// ```
+/// let results = minigrep::search("abc", "abcdefg");
+///
+/// println!("{:?}", results);
+/// ```
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     contents
         .lines()
