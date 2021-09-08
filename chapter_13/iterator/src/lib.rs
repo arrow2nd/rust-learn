@@ -27,7 +27,7 @@ struct Shoe {
     style: String,
 }
 
-fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+fn _shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
     shoes.into_iter().filter(|s| s.size == shoe_size).collect()
 }
 
@@ -48,7 +48,7 @@ fn filters_by_size() {
         },
     ];
 
-    let in_my_size = shoes_in_my_size(shoes, 10);
+    let in_my_size = _shoes_in_my_size(shoes, 10);
 
     assert_eq!(
         in_my_size,
@@ -70,7 +70,7 @@ struct Counter {
 }
 
 impl Counter {
-    fn new() -> Counter {
+    fn _new() -> Counter {
         Counter { count: 0 }
     }
 }
@@ -91,7 +91,7 @@ impl Iterator for Counter {
 
 #[test]
 fn calling_next_directly() {
-    let mut counter = Counter::new();
+    let mut counter = Counter::_new();
 
     assert_eq!(counter.next(), Some(1));
     assert_eq!(counter.next(), Some(2));
@@ -103,8 +103,8 @@ fn calling_next_directly() {
 
 #[test]
 fn using_other_itr_trait_methods() {
-    let sum: u32 = Counter::new()
-        .zip(Counter::new().skip(1))
+    let sum: u32 = Counter::_new()
+        .zip(Counter::_new().skip(1))
         .map(|(a, b)| a * b)
         .filter(|x| x % 3 == 0)
         .sum();
